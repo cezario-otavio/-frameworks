@@ -3,7 +3,7 @@ import { CreateTodoRepository } from "../repository";
 import { CreateTodoDto } from "../dto/create-todo.dto";
 
 @Injectable()
-export class CreateTodoUseCase {
+export class CreateTodo {
     constructor(
       private readonly createTodoRepository: CreateTodoRepository,
       private readonly logger: Logger,
