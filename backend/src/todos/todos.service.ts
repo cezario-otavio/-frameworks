@@ -1,26 +1,41 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
+import { CreatedTodoUseCase } from './use-cases';
+import { DeleteTodoUseCase} from './use-cases'
+import { UpdateTodosUseCase} from './use-cases'
+import { Findalltodos} from './use-cases'
+import { findtodobyid} from './use-cases'
 
 @Injectable()
 export class TodosService {
+
+  constructor(
+    private readonly CreateTodoUseCase: CreatedTodoUseCase,
+    private readonly DeleteTodoUseCase: DeleteTodoUseCase,
+    private readonly UpdateTodoUseCase: UpdateTodosUseCase,
+    private readonly findTodoByIdUseCase: findtodobyid,
+    private readonly FindAllTodosUseCase: Findalltodos,
+  ) {}
+   
+
   create(createTodoDto: CreateTodoDto) {
-    return 'This action adds a new todo';
+    return this.CreateTodoUseCase.execute(CreateTodoDto);
+  }
+
+  update( id: string, updateTodoDto: UpdateTodoDto) {
+    return this.UpdateTodoUseCase.execute(id, UpdateTodoDto);
+  }
+
+  findById(id: string) {
+    return this.findTodoByIdUseCase.execute(id);
   }
 
   findAll() {
-    return `This action returns all todos`;
+     return this.FindAllTodosUseCase.execute();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} todo`;
-  }
-
-  update(id: number, updateTodoDto: UpdateTodoDto) {
-    return `This action updates a #${id} todo`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} todo`;
+  delete(id: string) {
+      return this.DeleteTodoUseCase.execute(id);
   }
 }
