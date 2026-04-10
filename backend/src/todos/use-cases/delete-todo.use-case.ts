@@ -18,7 +18,7 @@ export class DeleteTodoUseCase {
                 throw new NotFoundException('ToDo not found')
             }
 
-            await this.deleteTodoRepository.Delete(id);
+            await this.deleteTodoRepository.delete(id);
             this.logger.log('ToDo deleted sucessfully');
             return todo;
         } catch (error) {

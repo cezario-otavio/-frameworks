@@ -12,7 +12,7 @@ export class UpdateTodosUseCase {
     ) {}
 
 
-    async execute( data, id: string) {
+    async execute(id: string, data: UpdateTodoDto) {
         try {
             this.logger.log('Updating toDo...');
             const todo = await this.findtodobyidrepository.findbyid(id);
@@ -20,7 +20,7 @@ export class UpdateTodosUseCase {
                             throw new NotFoundException('ToDo not found')
                         }
             
-            await this.UpdateTodoRepository.update(data);
+            await this.UpdateTodoRepository.update(id, data);
             this.logger.log('ToDo update sucessfully');
             return todo;
         } catch (error) {

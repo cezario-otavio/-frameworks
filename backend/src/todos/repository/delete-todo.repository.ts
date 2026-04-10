@@ -6,7 +6,7 @@ import { PrismaService } from "src/shared/databases/prisma.database";
  export class DeleteTodoRepository {
     constructor(private readonly prisma: PrismaService) {}
 
-    async Delete(id: string) {
+    async delete(id: string) {
         return await this.prisma.todo.delete({
             where: { id }
         });

@@ -20,11 +20,11 @@ export class TodosService {
    
 
   create(createTodoDto: CreateTodoDto) {
-    return this.CreateTodoUseCase.execute(CreateTodoDto);
+    return this.CreateTodoUseCase.execute(createTodoDto);
   }
 
   update( id: string, updateTodoDto: UpdateTodoDto) {
-    return this.UpdateTodoUseCase.execute(id, UpdateTodoDto);
+    return this.UpdateTodoUseCase.execute(id, updateTodoDto);
   }
 
   findById(id: string) {

@@ -7,7 +7,7 @@ import { PrismaService } from "src/shared/databases/prisma.database";
     constructor(private readonly prisma: PrismaService) {}
 
     async findall() {
-        return await this.prisma.todo.findmany();
+        return await this.prisma.todo.findMany();
     }
  }
  
